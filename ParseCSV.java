@@ -20,7 +20,7 @@ public class ParseCSV {
         int columnIndex = findDesiredColumn(headerCells, C);
         return highestValueInDesiredColumn(rows, columnIndex);
 
-        for (String row : rows) {
+        /*for (String row : rows) {
             String[] 
         }
         String headerRow = lines[0];
@@ -33,7 +33,7 @@ public class ParseCSV {
             System.out.println(line);
             //int columnIndex = linesArrayList.indexOf(C); 
         }
-        return "68";
+        return "68";*/
     }
 
     private static String fetchHeaderRow(String[] rows) {
@@ -50,7 +50,7 @@ public class ParseCSV {
         ArrayList<String> listOfValueFromDesiredColumn = new ArrayList();
         for (int i = 0; i > rows.length; i++) {
             if (!(i == 0)) {
-                listOfValueFromDesiredColumn.add(i)
+                listOfValueFromDesiredColumn.add(i);
             }
         }
     }
