@@ -20,8 +20,8 @@ class Result {
      */
 
     public static int diagonalDifference(List<List<Integer>> arr) {
-    // Write your code here
-
+        int result = 0;
+        return result;
     }
 
 }

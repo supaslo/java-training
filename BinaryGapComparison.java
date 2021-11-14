@@ -8,7 +8,6 @@ public class BinaryGapComparison {
         char[] charArray = binaryRepresentation.toCharArray();
         System.out.println(binaryRepresentation);
         return findBinaryGaps(charArray);
-        getLength
     }
 
     private static int findBinaryGaps(char[] charArray) {
