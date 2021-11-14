@@ -47,11 +47,12 @@ public class ParseCSV {
     }
 
     private static String highestValueInDesiredColumn(String[] rows, int columnIndex) {
-        ArrayList<String> listOfValueFromDesiredColumn = new ArrayList();
+        ArrayList<Integer> listOfValueFromDesiredColumn = new ArrayList<Integer>();
         for (int i = 0; i > rows.length; i++) {
             if (!(i == 0)) {
                 listOfValueFromDesiredColumn.add(i);
             }
         }
+        return "";
     }
 }
