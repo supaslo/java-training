@@ -1,16 +1,9 @@
 import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
-import java.util.regex.*;
-import java.util.stream.*;
-import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-class Result {
+public class DiagonalDifference {
 
     /*
      * Complete the 'diagonalDifference' function below.
@@ -19,32 +12,83 @@ class Result {
      * The function accepts 2D_INTEGER_ARRAY arr as parameter.
      */
 
-    public static int diagonalDifference(List<List<Integer>> arr) {
-        int result = 0;
-        return result;
+    public static int diagonalDifference(List<List<Integer>> matrixArray, int dimension) {
+        List<Integer> diagonalOrder = new ArrayList<>();
+
+        for (int i = 0; i < dimension; i++) {
+            diagonalOrder.add(i);
+        }
+
+        List<Integer> firstDiagonal = findDiagonalByOrder(matrixArray, diagonalOrder);
+        Collections.sort(diagonalOrder, Collections.reverseOrder());
+        List<Integer> secondDiagonal = findDiagonalByOrder(matrixArray, diagonalOrder);
+
+        int sumFirstDiagonal = sumArray(firstDiagonal);
+        int sumSecondDiagonal = sumArray(secondDiagonal);
+
+        return findPositiveDifference(sumFirstDiagonal,sumSecondDiagonal);
     }
 
-}
+    static List<Integer> findDiagonalByOrder(List<List<Integer>> matrixArray, List<Integer> order) {
+        List<Integer> diagonal = new ArrayList<>();
+        for(int i = 0; i < matrixArray.size(); i++) {
+            List<Integer> array = matrixArray.get(i);
+            diagonal.add(array.get(order.get(i)));
+        }
+        return diagonal;
+    }
 
-public class DiagonalDifference {
+    static int findPositiveDifference(int firstNumber, int secondNumber) {
+        if (firstNumber > secondNumber) {
+            return firstNumber - secondNumber;
+        } else {
+            return secondNumber - firstNumber;
+        }
+    }
+
+    static int sumArray(List<Integer> ar) {
+        int sum = 0;
+
+        for(int i: ar) {
+            sum += i;
+        }
+
+        return sum;
+    }
+
     public static void main(String[] args) throws IOException {
-        int n = Integer.parseInt(bufferedReader.readLine().trim());
+        List<List<Integer>> matrixArray = new ArrayList<>();
+        int n = 4;
 
-        List<List<Integer>> arr = new ArrayList<>();
+        List<Integer> arrayOne = new ArrayList<>();
+        arrayOne.add(-1);
+        arrayOne.add(1);
+        arrayOne.add(-7);
+        arrayOne.add(-8);
 
-        IntStream.range(0, n).forEach(i -> {
-            try {
-                arr.add(
-                    Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                        .map(Integer::parseInt)
-                        .collect(toList())
-                );
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        List<Integer> arrayTwo = new ArrayList<>();
+        arrayTwo.add(-10);
+        arrayTwo.add(-8);
+        arrayTwo.add(-5);
+        arrayTwo.add(2);
 
-        int result = Result.diagonalDifference(arr);
-        System.out.println("the difference of the diagonals are: " + result);
+        List<Integer> arrayThree = new ArrayList<>();
+        arrayThree.add(0);
+        arrayThree.add(9);
+        arrayThree.add(7);
+        arrayThree.add(-1);
+
+        List<Integer> arrayFour = new ArrayList<>();
+        arrayFour.add(4);
+        arrayFour.add(4);
+        arrayFour.add(-2);
+        arrayFour.add(1);
+
+        matrixArray.add(arrayOne);
+        matrixArray.add(arrayTwo);
+        matrixArray.add(arrayThree);
+        matrixArray.add(arrayFour);
+
+        System.out.println("the difference of the diagonals are: " + diagonalDifference(matrixArray, n));
     }
 }
